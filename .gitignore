@@ -1,5 +1,5 @@
-amazon-clone-frontend/node_modules/*
+amazon-frontend/node_modules/*
 
-amazon-clone-frontend/public/*
+amazon-frontend/public/*
 
-amazon-clone-frontend/yarn.lock
+amazon-frontend/yarn.lock
