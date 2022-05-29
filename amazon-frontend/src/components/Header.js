@@ -1,22 +1,24 @@
 import { PageHeader, Button, Input, Space, Badge } from "antd";
 import { useMoralis } from "react-moralis";
+import { Link } from "react-router-dom";
 import "./Header.css";
-import USA from "../images/usa.png";
 import Amazon from "../images/logo.png";
+import USA from "../images/usa.png";
 import BookStore from "../images/bookstore.png";
 import { ShoppingCartOutlined, MenuOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+
+const { Search } = Input;
+const categories = [
+  "Comics",
+  "Dictionaries",
+  "Novels",
+  "Fantasy",
+  "Horror",
+  "Adventure",
+];
+
 const Header = () => {
-  const { Search } = Input;
-  const categories = [
-    "Comics",
-    "Dictionaries",
-    "Novels",
-    "Fantasy",
-    "Horror",
-    "Adventures",
-  ];
-  const { authenticate } = useMoralis();
+  const { authenticate, account } = useMoralis();
   return (
     <div className="site-page-header-ghost-wrapper">
       <PageHeader
@@ -26,9 +28,8 @@ const Header = () => {
             <img src={Amazon} className="logo"></img>
             <img src={BookStore} className="logo"></img>
             <Search
-              placeholder="Find a Product"
-              allowClear
-              enterButton="Search"
+              placeholder="Find A Product"
+              enterButton
               className="searchBar"
             />
             <Button
@@ -37,7 +38,11 @@ const Header = () => {
               type="primary"
               onClick={() => authenticate()}
             >
-              Login
+              {account ? (
+                <span>{account.slice(0, 5)}...</span>
+              ) : (
+                <span>login</span>
+              )}
             </Button>
             <Space size={"large"}>
               <Badge count={0} showZero>
@@ -47,9 +52,9 @@ const Header = () => {
                 </span>
               </Badge>
               <Space className="header-buttons" size={"small"}>
-                <img src={USA} alt="region" className="flag"></img>
+                <img src={USA} alt="region" className="flag"></img>▾
               </Space>
-            </Space>           
+            </Space>
           </>,
         ]}
       ></PageHeader>
@@ -60,12 +65,12 @@ const Header = () => {
             Categories
           </Space>
           {categories.map((e) => {
-              return (
-                <Link to="/categories" state={e} className="categories">
-                  {e}
-                </Link>
-              );
-            })}
+            return (
+              <Link to="/categories" state={e} className="categories">
+                {e}
+              </Link>
+            );
+          })}
         </Space>
       </div>
     </div>
