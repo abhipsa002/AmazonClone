@@ -1,0 +1,5 @@
+amazon-clone-frontend/node_modules/*
+
+amazon-clone-frontend/public/*
+
+amazon-clone-frontend/yarn.lock
