@@ -13,7 +13,7 @@ function Purchase({ book }) {
     // Get The Price of MATIC
 
     const options = {
-      address: "xxxxxxxx",
+      address: "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
       chain: "eth",
     };
     const price = await Moralis.Web3API.token.getTokenPrice(options);
@@ -24,7 +24,7 @@ function Purchase({ book }) {
     const options1 = {
       type: "native",
       amount: Moralis.Units.ETH(priceMatic),
-      receiver: "xxxxxxx",
+      receiver: "xxxx",
     };
     let result = await Moralis.transfer(options1);
 
@@ -54,7 +54,7 @@ function Purchase({ book }) {
         <Option value={5}>5</Option>
       </Select>
       {console.log(chainId)}
-      {chainId === "0x1" && (
+      {/* {chainId === "0x1" && ( */}
         <Button
           className="login"
           style={{ width: "100%", marginTop: "50px" }}
@@ -62,7 +62,7 @@ function Purchase({ book }) {
         >
           <ShoppingCartOutlined /> Buy Now
         </Button>
-      )}
+      {/* )} */}
 
       <Modal
         title="Purchase Product"
